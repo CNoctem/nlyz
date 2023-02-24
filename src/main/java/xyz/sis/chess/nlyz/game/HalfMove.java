@@ -30,7 +30,7 @@ public class HalfMove {
             var ch0 = algebraic.charAt(0);
             if ("O-O".equals(algebraic) || "0-0".equals(algebraic) || "o-o".equals(algebraic)) {
                 hm = createShortCastle(index, board, color);
-            } else if (Util.in(ch0, 'N', 'B', 'Q', 'R')) {
+            } else if (Util.in(ch0, 'N', 'B', 'Q', 'R', 'K')) {
                 var pType = PieceType.valueOf(String.valueOf(ch0));
                 var dest = Coordinate.get(algebraic.substring(1));
                 var orig = computeOrig(board, color, dest, pType);
@@ -41,6 +41,7 @@ public class HalfMove {
             //Qxc4
             if (idx != -1) {
                 hm = getHalfMove(algebraic, board, color, idx);
+                hm.capture = true;
             } else {
                 //Nbd7
                 var piece = PieceType.valueOf(String.valueOf(algebraic.charAt(0)));
@@ -120,6 +121,8 @@ public class HalfMove {
     private int pgnIndex;
     private XColor color;
 
+    private boolean capture;
+
     private HalfMove secondHalfMove = null;
 
     protected HalfMove(Coordinate orig, Coordinate dest, String algebraic) {
@@ -139,6 +142,10 @@ public class HalfMove {
 
     public HalfMove getSecondHalfMove() {
         return secondHalfMove;
+    }
+
+    public boolean isCapture() {
+        return capture;
     }
 
     @Override

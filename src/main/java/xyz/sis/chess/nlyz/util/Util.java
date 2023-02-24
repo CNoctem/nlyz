@@ -13,7 +13,7 @@ public class Util {
     }
 
     public static int lengthWithoutSpecial(String algebraic) {
-        if ('+' == lastChar(algebraic)) return algebraic.length() - 1;
+        if (in(lastChar(algebraic), '+', '#')) return algebraic.length() - 1;
         return algebraic.length();
     }
 

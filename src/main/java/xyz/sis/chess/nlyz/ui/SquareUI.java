@@ -23,7 +23,7 @@ public class SquareUI extends JPanel {
 
     private final Square square;
 
-    public SquareUI(Square square) throws IOException {
+    public SquareUI(Square square) {
         color = square.color;
         this.square = square;
     }

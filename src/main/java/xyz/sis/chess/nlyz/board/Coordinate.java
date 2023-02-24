@@ -38,6 +38,10 @@ public class Coordinate {
         valid = inRange8(f) && inRange8(r);
     }
 
+    public Coordinate directedStep(int fDir, int rDir) {
+        return Coordinate.get(f + fDir, r + rDir);
+    }
+
     @Override
     public String toString() {
         return (char)(f+97) + "" + (char)(r + 49);// + "(" + f + "" + r + ")";

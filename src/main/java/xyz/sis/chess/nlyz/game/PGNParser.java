@@ -16,6 +16,8 @@ public class PGNParser {
 
     private final String algebraic;
 
+    private String end;
+
     public PGNParser(String algebraic) {
         this.algebraic = algebraic;
         parse();
@@ -37,7 +39,13 @@ public class PGNParser {
         } while (index < algebraic.length());
         var pts = algebraic.substring(prevIndex).trim().split(" ");
         if (pts.length == 3) log.debug("The End? '" + pts[2]);
-        Collections.addAll(parsed, pts);
+        parsed.add(pts[0]);
+        parsed.add(pts[1]);
+        end = pts[2];
+    }
+
+    public String getEnd() {
+        return end;
     }
 
     public List<String> getParsed() {

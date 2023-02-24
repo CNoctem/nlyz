@@ -12,7 +12,19 @@ public class King extends Piece {
 
     @Override
     public CoordinateSet computePossibleDestinations(Board board, Coordinate currentCoo) {
-        return null;
+        var set = new CoordinateSet();
+
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(-1, -1), set);
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(0, -1), set);
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(1, -1), set);
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(1, 0), set);
+
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(1, 1), set);
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(0, 1), set);
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(-1, 1), set);
+        addIfNotFriend(board, currentCoo, currentCoo.directedStep(-1, 0), set);
+
+        return set;
     }
 
 }

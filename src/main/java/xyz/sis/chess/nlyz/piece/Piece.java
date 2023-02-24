@@ -36,6 +36,10 @@ public abstract class Piece {
         }
     }
 
+    protected void addIfNotFriend(Board b, Coordinate currentCoo, Coordinate coo, CoordinateSet set) {
+        if (!b.areFriends(currentCoo, coo)) set.add(coo);
+    }
+
     @Override
     public String toString() {
         return fullName;

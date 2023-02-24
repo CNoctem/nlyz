@@ -20,23 +20,17 @@ public class Game {
 
     private List<String> parsed;
 
+    private PGNParser parser;
+
     public Game(Board owner, String pgn) {
         this.owner = owner;
         parsePgn(pgn);
     }
 
     private void parsePgn(String pgn) {
-        parsed = new PGNParser(pgn).getParsed();
+        parser = new PGNParser(pgn);
+        parsed = parser.getParsed();
         log.debug("Parsed pgn: " + parsed);
-//        parsed.forEach(m -> {
-//            String[] pts = m.split(" ");
-//            if (pts.length > 0) game.add(HalfMove.createFromAlgebraic(pts[0], owner, WHITE));
-//            if (pts.length > 1) game.add(HalfMove.createFromAlgebraic(pts[1], owner, BLACK));
-//        });
-    }
-
-    private void parseNext() {
-
     }
 
     private int index = 0;
@@ -48,6 +42,14 @@ public class Game {
         game.add(hm);
         index++;
         return hm;
+    }
+
+    public boolean hasNext() {
+        return index < parsed.size();
+    }
+
+    public String getEnd() {
+        return parser.getEnd();
     }
 
 }

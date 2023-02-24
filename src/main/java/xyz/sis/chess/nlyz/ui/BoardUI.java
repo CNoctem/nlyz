@@ -31,14 +31,14 @@ public class BoardUI extends JPanel {
 
     private final Board board;
 
-    private Set<Coordinate> markedSquares = new HashSet<>();
+    private final Set<Coordinate> markedSquares = new HashSet<>();
 
-    public BoardUI(Board board) throws IOException {
+    public BoardUI(Board board) {
         this.board = board;
         initBoardUI();
     }
 
-    private void initBoardUI() throws IOException {
+    private void initBoardUI() {
         var layout = new GridBagLayout();
         layout.columnWeights = new double[]{0, 1, 1, 1, 1, 1, 1, 1, 1};
         layout.rowWeights = new double[]{1, 1, 1, 1, 1, 1, 1, 1};
